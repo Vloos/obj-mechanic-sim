@@ -1,26 +1,44 @@
 <script>
-  import Objeto from '$lib/components/objeto.svelte';
+  import Icons from '$lib/components/icons.svelte';
+	import Inventario from '$lib/components/inventario.svelte';
+import Objeto from '$lib/components/objeto.svelte';
   import {crearObjeto} from '$lib/objeto'
 
-  /**@type {Array.<import("$lib/objeto.js").default>}*/
-  let objs = []
+  /**@type {Map.<string, import("$lib/objeto.js").default>}*/
+  let objs = new Map()
+  /**@type {import("$lib/objeto.js").default | undefined}*/
+  let obj = undefined
+
+  /**@type {string}*/
+  let objOver = ''
+
+  $: muestra(objOver)
+  
+  /**
+   * 
+   * @param {string} que
+   */
+  function muestra(que){
+      obj = objs.get(que)
+  }
 
   function generar(){
-    objs.push(crearObjeto())
+    let obj = crearObjeto()
+    objs.set(obj.id, obj)
     objs = objs
   }
 </script>
-
 
 <button
   on:click={generar}
 >Generar</button>
 
-<div>
-  {#each objs as obj}
-    <Objeto {obj}/>
-  {/each}
-</div>
+<Inventario {objs} bind:objOver={objOver}/>
+
+{#if obj}
+  <Objeto {obj}/>
+{/if}
+
 
 <style>
   div{

@@ -106,15 +106,18 @@ const propsAnillo = [
 
 
 export class ObjetosTipos {
-  static Espada = new ObjetosTipos('Espada', propsArma, [])
-  static Ballesta = new ObjetosTipos('Ballesta', propsArma)
-  static Arco = new ObjetosTipos('Arco', propsArma)
-  static Casco = new ObjetosTipos('Casco', propsCasco, ['barbute',])
-  static Pechera = new ObjetosTipos('Pechera', propsPechera, ['abdominal-armor',])
-  static Guantes = new ObjetosTipos('Guantes', propsGuantes)
-  static Botas = new ObjetosTipos('Botas', propsBotas)
-  static Amuleto = new ObjetosTipos('Amuleto', propsAmuleto)
-  static Anillo = new ObjetosTipos('Anillo', propsAnillo)
+  static Espada = new ObjetosTipos('Espada', propsArma, ['broadsword', 'gladius', 'katana', 'stiletto', 'two-handed-sword', ])
+  static Daga = new ObjetosTipos('Daga', propsArma, ['curvy-knife', 'sacrificial-dagger', ])
+  static Ballesta = new ObjetosTipos('Ballesta', propsArma, ['crossbow',])
+  static Hacha = new ObjetosTipos('Hacha', propsArma, ['battle-axe', 'tomahawk'])
+  static Arco = new ObjetosTipos('Arco', propsArma, ['double-shot', 'heavy-arrow', 'high-shot', 'pocket-bow', ])
+  static Maza = new ObjetosTipos('Maza', propsArma, ['flanged-mace', 'orb-wand', 'spiked-bat', 'warhammer'])
+  static Casco = new ObjetosTipos('Casco', propsCasco, ['barbute', 'black-knight-helm', 'closed-barbute', 'crested-helmet', 'heavy-helm', 'spartan-helmet', 'visored-helm'])
+  static Pechera = new ObjetosTipos('Pechera', propsPechera, ['abdominal-armor', 'heart-armor', 'leather-armor', 'leather-vest', 'mail-shirt', 'plastron', 'saiyan-suit', 'scale-mail', 'shoulder-armor', ])
+  static Guantes = new ObjetosTipos('Guantes', propsGuantes, ['gauntlet', 'gloves', 'mailed-fist', ])
+  static Botas = new ObjetosTipos('Botas', propsBotas, ['leg-armor', 'metal-boot', 'steeltoe-boots'])
+  static Amuleto = new ObjetosTipos('Amuleto', propsAmuleto, ['emerald-necklace', 'feather-necklace', 'gem-chain', 'gem-necklace', 'gem-pendant', 'heart-necklace', 'necklace', 'pearl-necklace', 'pendant-key', 'prayer-beads', 'primitive-necklace', 'tribal-pendant', ])
+  static Anillo = new ObjetosTipos('Anillo', propsAnillo,['big-diamond-ring', 'diamond-ring', 'globe-ring', 'power-ring', 'ring', 'skull-ring', 'skull-signet', 'torc', ])
 
   /**
    * 

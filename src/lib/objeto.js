@@ -13,6 +13,8 @@ export default class Objeto {
     this.calidad
     /**@type {Map.<import('./tipos').Prop, number>} */
     this.props
+    /**@type {string} */
+    this.icon
   }
 
   resumen() {
@@ -33,6 +35,8 @@ export function crearObjeto(){
 
   //  nombre, icono
   const objNombre = objTipo.nombre
+  const objIcon = objTipo.icons[randInt(0, objTipo.icons.length-1)]
+  console.log(objTipo);
 
   // calidad (normal, raro, mágico...)
   const listaCalidades = Object.keys(Calidades)
@@ -58,8 +62,10 @@ export function crearObjeto(){
   let obj = new Objeto()
   obj.nombre = objNombre
   obj.tipo = objTipo
+  obj.icon = objIcon
   obj.calidad = objCalidad
   obj.props = objProps
+
   return obj
 }
 
