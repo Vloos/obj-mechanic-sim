@@ -1,12 +1,17 @@
-import {Props, PropTipos, ObjetosTipos, Calidades } from './tipos'
+import {Prop, PropTipos, ObjetosTipos, Calidades } from './tipos'
 import {randInt, aleatorioConProbs, id} from './Herramientas'
 
 export default class Objeto {
   constructor(){
+    /**@type {string} */
     this.id = id()
+    /**@type {string} */
     this.nombre
+    /**@type {import("./tipos").ObjetosTipos} */
     this.tipo
+    /**@type {import("./tipos").Calidades} */
     this.calidad
+    /**@type {Map.<import('./tipos').Prop, number>} */
     this.props
   }
 
@@ -55,8 +60,6 @@ export function crearObjeto(){
   obj.tipo = objTipo
   obj.calidad = objCalidad
   obj.props = objProps
-
-  console.log(obj.resumen());
   return obj
 }
 

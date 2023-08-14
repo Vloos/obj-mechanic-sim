@@ -1,29 +1,29 @@
-export class Props {
+export class Prop {
   // ofensivo
-  static Crtpro = new Props('Probabilidad de crítico', 5, 10)
-  static CrtDmg = new Props('Daño de crítico', 10, 20)
-  static Attspd = new Props('Velocidad de ataque', 3, 6)
-  static FisDmg = new Props('Daño físico', 10, 20)
-  static EleDmg = new Props('Daño elemental', 10, 20)
-  static MagDmg = new Props('Daño mágico', 10, 20)
+  static Crtpro = new Prop('Probabilidad de crítico', 5, 10)
+  static CrtDmg = new Prop('Daño de crítico', 10, 20)
+  static Attspd = new Prop('Velocidad de ataque', 3, 6)
+  static FisDmg = new Prop('Daño físico', 10, 20)
+  static EleDmg = new Prop('Daño elemental', 10, 20)
+  static MagDmg = new Prop('Daño mágico', 10, 20)
   // utilidad
-  static VelMod = new Props('Velocidad de movimiento', 6, 12)
-  static RecRec = new Props('Recuperación de recurso', 6, 12)
-  static RedRec = new Props('Reducción de consumo de recurso', 2, 8)
-  static VelReu = new Props('Velocidad de reutilización', 5, 10)
-  static ModHab = new Props('Nivel de habilidades', 1, 4)
-  static masTod = new Props('Todas las características', 5, 10)
-  static MasFue = new Props('Fuerza', 10, 20)
-  static MasDes = new Props('Destreza', 10, 20)
-  static MasCon = new Props('Constitución', 10, 20)
-  static MasInt = new Props('Inteligencia', 10, 20)
+  static VelMod = new Prop('Velocidad de movimiento', 6, 12)
+  static RecRec = new Prop('Recuperación de recurso', 6, 12)
+  static RedRec = new Prop('Reducción de consumo de recurso', 2, 8)
+  static VelReu = new Prop('Velocidad de reutilización', 5, 10)
+  static ModHab = new Prop('Nivel de habilidades', 1, 4)
+  static masTod = new Prop('Todas las características', 5, 10)
+  static MasFue = new Prop('Fuerza', 10, 20)
+  static MasDes = new Prop('Destreza', 10, 20)
+  static MasCon = new Prop('Constitución', 10, 20)
+  static MasInt = new Prop('Inteligencia', 10, 20)
   // defensa
-  static DmgRed = new Props('Reducción de todo daño', 5, 10)
-  static FisRed = new Props('Reducción de daño físico', 10, 15)
-  static EleRed = new Props('Reducción de daño elemental', 10, 15)
-  static MagRed = new Props('Reducción de daño mágico', 10, 15)
-  static MaxHps = new Props('Salud', 10, 20)
-  static EvaPro = new Props('Probabilidad de esquivar', 6, 12)
+  static DmgRed = new Prop('Reducción de todo daño', 5, 10)
+  static FisRed = new Prop('Reducción de daño físico', 10, 15)
+  static EleRed = new Prop('Reducción de daño elemental', 10, 15)
+  static MagRed = new Prop('Reducción de daño mágico', 10, 15)
+  static MaxHps = new Prop('Salud', 10, 20)
+  static EvaPro = new Prop('Probabilidad de esquivar', 6, 12)
 
   /**
    * @param {strign} nombre 
@@ -40,32 +40,32 @@ export class Props {
 
 export class PropTipos{
   static Ofensivo = new PropTipos('Ofensivo',[
-    Props.Crtpro,
-    Props.CrtDmg,
-    Props.Attspd,
-    Props.FisDmg,
-    Props.EleDmg,
-    Props.MagDmg,
+    Prop.Crtpro,
+    Prop.CrtDmg,
+    Prop.Attspd,
+    Prop.FisDmg,
+    Prop.EleDmg,
+    Prop.MagDmg,
   ])
   static Defensivo = new PropTipos('Defensivo',[
-    Props.DmgRed,
-    Props.FisRed,
-    Props.EleRed,
-    Props.MagRed,
-    Props.MaxHps,
-    Props.EvaPro,
+    Prop.DmgRed,
+    Prop.FisRed,
+    Prop.EleRed,
+    Prop.MagRed,
+    Prop.MaxHps,
+    Prop.EvaPro,
   ])
   static Utilidad = new PropTipos('Utilidad',[
-    Props.VelMod,
-    Props.RecRec,
-    Props.RedRec,
-    Props.VelReu,
-    Props.ModHab,
-    Props.masTod,
-    Props.MasFue,
-    Props.MasDes,
-    Props.MasCon,
-    Props.MasInt,
+    Prop.VelMod,
+    Prop.RecRec,
+    Prop.RedRec,
+    Prop.VelReu,
+    Prop.ModHab,
+    Prop.masTod,
+    Prop.MasFue,
+    Prop.MasDes,
+    Prop.MasCon,
+    Prop.MasInt,
   ])
 
   constructor(nombre, props){
@@ -133,11 +133,11 @@ export class ObjetosTipos {
 
 export class Calidades{
   static normal = new Calidades('Normal', 'white', 1)
-  static raro = new Calidades('Raro', 'lleyow', 2)
-  static magico = new Calidades('Mágico', 'blue', 3)
-  static sacro = new Calidades('Sacro', 'ligtblue', 4)
-  static ancestral = new Calidades('Ancestral', 'orange', 5)
-  static unico = new Calidades('Único', 'darkgreen', 6)
+  static raro = new Calidades('Raro', 'blue', 2)
+  static magico = new Calidades('Mágico', 'yellow', 3)
+  static sacro = new Calidades('Sacro', 'gold', 4)
+  static ancestral = new Calidades('Ancestral', 'darkorange', 5)
+  static unico = new Calidades('Único', 'green', 6)
 
   constructor(nombre, color, nProps){
     this.nombre = nombre
