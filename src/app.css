@@ -113,7 +113,7 @@ body{
 	margin: 0 auto;
 	min-width: 800px;
   overflow: auto;
-  min-height: 0;
+  height: 100vh;
 }
 
 body *{

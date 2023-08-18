@@ -255,6 +255,7 @@
 
     };
   let displayIcon = icons[name];
+  $:displayIcon = icons[name];
 </script>
 <svg
 class={$$props.class}

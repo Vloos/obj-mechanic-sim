@@ -5,6 +5,8 @@
   export let handleOver = () => null
   export let sale = () => null
 
+  $:console.log(obj);
+
 </script>
 
 <div 
