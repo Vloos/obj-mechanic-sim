@@ -5,12 +5,16 @@
   import {crearObjeto} from '$lib/objeto'
 	import Objicon from '$lib/components/objicon.svelte';
 
-  /**@type {Array.<import("$lib/objeto.js").default>}*/
-  let objs = []
   /**@type {import("$lib/objeto.js").default | undefined}*/
   let obj = undefined
   /**@type {number}*/
   let maxInvTam = 36
+  /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
+  let objs = []
+  for (let i = 0; i < maxInvTam; i++) {
+    objs[i] = undefined
+  }
+  console.log('objs', objs);
 
   /**@type {number | undefined}*/
   let objOver = undefined
@@ -28,7 +32,8 @@
 
   function generar(){
     let obj = crearObjeto()
-    objs.push(obj)
+    console.log(objs.indexOf(undefined));
+    objs[objs.indexOf(undefined)] = obj
     objs = objs
   }
 </script>
@@ -49,10 +54,10 @@
 
 <button
   on:click={generar}
-  disabled={objs.length >= maxInvTam}
+  disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
 >Generar</button>
 
-<Inventario {objs} bind:objOver={objOver} {maxInvTam}/>
+<Inventario bind:objs={objs} bind:objOver={objOver} {maxInvTam}/>
 
 {#if obj}
   <Objeto {obj}/>

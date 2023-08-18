@@ -2,12 +2,12 @@
 	import { agarrado } from '$lib/stores.js';
 	import Objicon from "./objicon.svelte";
   
-  /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
-  export let objs = []
   /**@type {number | undefined}*/
   export let objOver = undefined
   /**@type {number}*/
   export let maxInvTam = 1
+  /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
+  export let objs = []
 
 
   /**@param {number} k*/
@@ -42,7 +42,7 @@
   <li
     role='menuitem' 
     draggable={Boolean(objs[i])}
-    on:dragstart|preventDefault={() => {agarrar(i)}}
+    on:dragstart|preventDefault={() => {!$agarrado ? agarrar(i): null}}
     on:dragend={() => {console.log('soltar')}}
     on:mouseenter={() => {handleOver(i)}}
     on:mouseleave={() => {sale()}}
