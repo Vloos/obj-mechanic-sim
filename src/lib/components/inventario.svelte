@@ -10,31 +10,40 @@
   export let objs = []
 
 
-  /**@param {number} k*/
-  function handleOver(k){
-    objOver = k
+  function moverobj(ele, param) {
+    /**@param {number} cual*/
+    const agarrar = (cual) => {
+      $agarrado = objs[cual]
+      objs[cual] = undefined
+      objs = objs
+    }
+
+    /**@param {number} donde*/
+    const soltar = (donde) => {
+      const aux = objs[donde] 
+      objs[donde] = $agarrado
+      $agarrado = aux
+    }
+
+    ele.addEventListener('dragstart', e => {
+      e.preventDefault()
+      !$agarrado ? agarrar(param.i): null
+    })
+
+    ele.addEventListener('mouseenter', () => {objOver = param.i})
+
+    ele.addEventListener('mouseleave', () => {objOver = undefined})
+
+    ele.addEventListener('mouseup', () => {Boolean($agarrado) ? soltar(param.i) : agarrar(param.i)})
+
+    return {
+      destroy(){
+        ele.removeEventListener('dragstart')
+        ele.removeEventListener('mouseenter')
+        ele.removeEventListener('mouseleave')
+      }
+    }
   }
-
-
-  function sale(){
-    console.log('sale');
-    objOver = undefined
-  }
-
-  /**@param {number} cual*/
-  function agarrar(cual){
-    $agarrado = objs[cual]
-    objs[cual] = undefined
-    objs = objs
-  }
-
-  /**@param {number} donde*/
-  function soltar(donde){
-    const aux = objs[donde] 
-    objs[donde] = $agarrado
-    $agarrado = aux
-  }
-
 </script>
 
 <ul>
@@ -42,12 +51,8 @@
   <li
     role='menuitem' 
     draggable={Boolean(objs[i])}
-    on:dragstart|preventDefault={() => {!$agarrado ? agarrar(i): null}}
-    on:dragend={() => {console.log('soltar')}}
-    on:mouseenter={() => {handleOver(i)}}
-    on:mouseleave={() => {sale()}}
-    on:mouseup={() => {Boolean($agarrado) ? soltar(i) : agarrar(i)}}
     class:sobre={objOver === i}
+    use:moverobj={{i}}
   >
     {#if objs[i]}
       <Objicon obj={objs[i]}/>

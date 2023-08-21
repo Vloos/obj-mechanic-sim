@@ -14,18 +14,13 @@
   for (let i = 0; i < maxInvTam; i++) {
     objs[i] = undefined
   }
-  console.log('objs', objs);
 
   /**@type {number | undefined}*/
   let objOver = undefined
 
   $: muestra(objOver)
-  $: console.log('agarrado:', $agarrado);
   
-  /**
-   * 
-   * @param {number} que
-   */
+  /** @param {number} que */
   function muestra(que){
       obj = objs[que]
   }
