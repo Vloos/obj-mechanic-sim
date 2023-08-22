@@ -35,5 +35,6 @@
     height: 60px;
     width: 60px;
     border: 2px solid;
+    background-color: black;
   }
 </style>

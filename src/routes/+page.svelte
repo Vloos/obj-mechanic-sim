@@ -16,14 +16,6 @@
     objs[i] = undefined
   }
 
-  /**@type {number | undefined}*/
-  let objOver = undefined
-
-  
-  /** @param {number} que */
-  function muestra(que){
-      obj = objs[que]
-  }
 
   function generar(){
     let obj = crearObjeto()
@@ -49,6 +41,12 @@
   {$agarrado?.nombre || ''}
 </p>
 
+{#if Boolean($overado)}
+  <div class='objInfo' style={`top:${$mousePos.y}px; left:${$mousePos.x}px`}>
+    <Objeto obj={$overado}/>
+  </div>
+{/if}
+
 <button
   on:click={generar}
   disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
@@ -61,12 +59,6 @@
 <Forja/>
 
 
-{#if Boolean($overado)}
-  <div class='objInfo'>
-    <Objeto {obj}/>
-  </div>
-{/if}
-
 
 <style>
   .objicon{
@@ -77,5 +69,13 @@
     height: 60px;
     transform: translateX(-50%) translateY(-50%);
     pointer-events:none;
+  }
+
+  .objInfo{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    pointer-events:none;
+    transform: translateX(-40%) translateY(-10%);
   }
 </style>

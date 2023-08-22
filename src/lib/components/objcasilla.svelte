@@ -35,7 +35,7 @@
 
     const mdrag = (e) => {
       e.preventDefault()
-      !$agarrado ? agarrar(): null
+      if (!$agarrado) agarrar()
     }
 
     ele.addEventListener('dragstart', mdrag)
