@@ -24,6 +24,7 @@
     border: 4px solid;
     width: 350px;
     padding: 1rem;
+    background-color: #111;
   }
 
   header{

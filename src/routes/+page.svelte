@@ -1,5 +1,5 @@
 <script>
-	import { agarrado, mousePos } from '$lib/stores.js';
+	import { agarrado, mousePos, overado } from '$lib/stores.js';
 	import Inventario from '$lib/components/inventario.svelte';
   import Objeto from '$lib/components/objeto.svelte';
   import {crearObjeto} from '$lib/objeto'
@@ -19,7 +19,6 @@
   /**@type {number | undefined}*/
   let objOver = undefined
 
-  $: muestra(objOver)
   
   /** @param {number} que */
   function muestra(que){
@@ -42,7 +41,10 @@
   </div>
 {/if}
 
+
+
 <p>
+  {$overado?.nombre || ''}
   {$mousePos.x} : {$mousePos.y}
   {$agarrado?.nombre || ''}
 </p>
@@ -52,14 +54,17 @@
   disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
 >Generar</button>
 
-<Inventario bind:objs={objs} bind:objOver={objOver} {maxInvTam}/>
+<Inventario bind:objs={objs} {maxInvTam}/>
 
 <hr>
 <h2>Forja</h2>
 <Forja/>
 
-{#if obj}
-  <Objeto {obj}/>
+
+{#if Boolean($overado)}
+  <div class='objInfo'>
+    <Objeto {obj}/>
+  </div>
 {/if}
 
 

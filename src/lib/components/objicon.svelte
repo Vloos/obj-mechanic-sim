@@ -1,22 +1,28 @@
 <script>
+	import { overado } from "$lib/stores";
 	import Icons from "./icons.svelte";
   /**@type {import("../objeto.js").default | undefined}*/
   export let obj = undefined
   export let handleOver = () => null
   export let sale = () => null
 
-  function over(){
-    console.log('meh', obj?.id);
+  function sobreObj(){
+    handleOver()
+    $overado = obj
+  }
+
+  function noSobreObj(){
+    sale()
+    $overado = undefined
   }
 </script>
 
 <div 
   style={`border-color: ${obj?.calidad.color}; box-shadow:inset 0 0 0.5rem ${obj?.calidad.color};`}
-  on:mouseenter={handleOver}
-  on:mouseleave={sale}
-  on:focus={handleOver}
-  on:blur={sale}
-  on:mouseover={over}
+  on:mouseenter={sobreObj}
+  on:focus={sobreObj}
+  on:mouseleave={noSobreObj}
+  on:blur={noSobreObj}
   role="presentation"
   >
   <Icons name={obj?.icon || 'error'} height='50px' width='50px'/>
