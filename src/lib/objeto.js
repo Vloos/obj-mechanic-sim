@@ -15,6 +15,8 @@ export default class Objeto {
     this.props
     /**@type {string} */
     this.icon
+    /**@type {string} */
+    this.estado
   }
 
   resumen() {

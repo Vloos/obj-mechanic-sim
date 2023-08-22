@@ -5,8 +5,9 @@
   export let handleOver = () => null
   export let sale = () => null
 
-  $:console.log(obj);
-
+  function over(){
+    console.log('meh', obj?.id);
+  }
 </script>
 
 <div 
@@ -15,6 +16,7 @@
   on:mouseleave={sale}
   on:focus={handleOver}
   on:blur={sale}
+  on:mouseover={over}
   role="presentation"
   >
   <Icons name={obj?.icon || 'error'} height='50px' width='50px'/>

@@ -28,7 +28,7 @@ export function aleatorioConProbs(probs, ops) {
 export function id(chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', length = 8){
   let res = ''
   for (let i = 0; i < length; i++) {
-    res += chars.charAt(randInt(0, chars.length));  
+    res += chars.charAt(randInt(0, chars.length-1));  
   }
   return res
 }

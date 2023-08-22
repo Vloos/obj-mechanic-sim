@@ -4,6 +4,7 @@
   import Objeto from '$lib/components/objeto.svelte';
   import {crearObjeto} from '$lib/objeto'
 	import Objicon from '$lib/components/objicon.svelte';
+	import Forja from '$lib/components/forja.svelte';
 
   /**@type {import("$lib/objeto.js").default | undefined}*/
   let obj = undefined
@@ -27,7 +28,6 @@
 
   function generar(){
     let obj = crearObjeto()
-    console.log(objs.indexOf(undefined));
     objs[objs.indexOf(undefined)] = obj
     objs = objs
   }
@@ -53,6 +53,10 @@
 >Generar</button>
 
 <Inventario bind:objs={objs} bind:objOver={objOver} {maxInvTam}/>
+
+<hr>
+<h2>Forja</h2>
+<Forja/>
 
 {#if obj}
   <Objeto {obj}/>

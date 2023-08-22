@@ -41,6 +41,7 @@
         ele.removeEventListener('dragstart')
         ele.removeEventListener('mouseenter')
         ele.removeEventListener('mouseleave')
+        ele.removeEventListener('mouseup')
       }
     }
   }

@@ -6,6 +6,11 @@ export class Prop {
   static FisDmg = new Prop('Daño físico', 10, 20)
   static EleDmg = new Prop('Daño elemental', 10, 20)
   static MagDmg = new Prop('Daño mágico', 10, 20)
+  static UsOfSk = new Prop('Useless offensive skill', 2, 8)
+  static NiOfSk = new Prop('Nice offensive skill', 2, 8)
+  static GoOfSk = new Prop('Good offensive skill', 2, 8)
+  static NiOfSk = new Prop('Barely used niche skill (offensive)', 2, 8)
+
   // utilidad
   static VelMod = new Prop('Velocidad de movimiento', 6, 12)
   static RecRec = new Prop('Recuperación de recurso', 6, 12)
@@ -17,6 +22,10 @@ export class Prop {
   static MasDes = new Prop('Destreza', 10, 20)
   static MasCon = new Prop('Constitución', 10, 20)
   static MasInt = new Prop('Inteligencia', 10, 20)
+  static UsUtSk = new Prop('Useless utility skill', 2, 8)
+  static NiUtSk = new Prop('Nice utility skill', 2, 8)
+  static GoUtSk = new Prop('Good utility skill', 2, 8)
+  static NiUtSk = new Prop('Barely used niche skill (utility)', 2, 8)
   // defensa
   static DmgRed = new Prop('Reducción de todo daño', 5, 10)
   static FisRed = new Prop('Reducción de daño físico', 10, 15)
@@ -24,6 +33,10 @@ export class Prop {
   static MagRed = new Prop('Reducción de daño mágico', 10, 15)
   static MaxHps = new Prop('Salud', 10, 20)
   static EvaPro = new Prop('Probabilidad de esquivar', 6, 12)
+  static UsDeSk = new Prop('Useless deffensive skill', 2, 8)
+  static NiDeSk = new Prop('Nice deffensive skill', 2, 8)
+  static GoDeSk = new Prop('Good deffensive skill', 2, 8)
+  static NiDeSk = new Prop('Barely used niche skill (deffensive)', 2, 8)
 
   /**
    * @param {strign} nombre 
@@ -46,6 +59,10 @@ export class PropTipos{
     Prop.FisDmg,
     Prop.EleDmg,
     Prop.MagDmg,
+    Prop.UsOfSk,
+    Prop.NiOfSk,
+    Prop.GoOfSk,
+    Prop.NiOfSk,
   ])
   static Defensivo = new PropTipos('Defensivo',[
     Prop.DmgRed,
@@ -54,6 +71,10 @@ export class PropTipos{
     Prop.MagRed,
     Prop.MaxHps,
     Prop.EvaPro,
+    Prop.UsDeSk,
+    Prop.NiDeSk,
+    Prop.GoDeSk,
+    Prop.NiDeSk,
   ])
   static Utilidad = new PropTipos('Utilidad',[
     Prop.VelMod,
@@ -66,6 +87,10 @@ export class PropTipos{
     Prop.MasDes,
     Prop.MasCon,
     Prop.MasInt,
+    Prop.UsUtSk,
+    Prop.NiUtSk,
+    Prop.GoUtSk,
+    Prop.NiUtSk,
   ])
 
   constructor(nombre, props){
@@ -147,4 +172,14 @@ export class Calidades{
     this.color = color
     this.nProps = nProps
   }
+}
+
+export class Estados{
+  static Bloqueado = new Estados('Bloqueado', 'No se puede borrar, ni modificar')
+
+  constructor(nombre, descripcion){
+    this.nombre = nombre
+    this.descripcion = descripcion
+  }
+    
 }
