@@ -1,4 +1,5 @@
 <script>
+	import Objcasilla from './objcasilla.svelte';
 	import { calculaProbs } from "$lib/forja";
 	import { agarrado } from "$lib/stores";
 	import Objicon from "./objicon.svelte";
@@ -21,86 +22,20 @@
     console.log('controlando');
     exito =  calculaProbs(objOrigen, objAporte)
   }
-
-  /**
-   * @param {boolean} esAporte
-   * @param {HTMLElement} ele
-  */
-  function moverobj(ele, esAporte) {
-    function fdrag(e){
-      console.log('draga')
-      e.preventDefault()
-      !$agarrado ? agarrar(): null
-    }
-
-    function fup(){
-      Boolean($agarrado) ? soltar() : agarrar()
-    }
-
-    const agarrar = () => {
-      if (esAporte){
-        $agarrado = objAporte
-        objAporte = undefined
-      } else {
-        $agarrado = objOrigen
-        objOrigen = undefined
-      }
-    }
-
-    const soltar = () => {
-      let aux
-      if (esAporte){
-        aux = objAporte
-        objAporte = $agarrado
-        $agarrado = aux
-      } else {
-        aux = objOrigen
-        objOrigen = $agarrado
-        $agarrado = aux
-      }
-    }
-
-    ele.addEventListener('dragstart', fdrag)
-
-    ele.addEventListener('mouseup', fup)
-
-    return {
-      destroy(){
-        ele.removeEventListener('mouseup', fup)
-        ele.removeEventListener('mousedrag', fdrag)
-      }
-    }
-  }
 </script>
 
 
 <div class="forja">
   <div>
     <p>Donante</p>
-    <div class="aporte"
-      use:moverobj={true}
-      draggable={Boolean(objAporte)}
-      role='none'
-    >
-      {#if Boolean(objAporte)}
-        <Objicon obj={objAporte}/>
-      {/if}
-    </div>
+    <Objcasilla obj={objAporte}/>
   </div>
 
   &rightarrow;
 
   <div>
     <p>Base</p>
-    <div class="origen"
-      use:moverobj={false}
-      draggable={Boolean(objOrigen)}
-      role='none'
-    >
-      {#if objOrigen}
-        <Objicon obj={objOrigen}/>
-      {/if}
-    </div>
+    <Objcasilla obj={objOrigen}/>
   </div>
   &rightarrow;
   <div>
@@ -127,7 +62,7 @@
   .forja > *{
     flex-basis: min-content;
   }
-  .aporte, .origen, .resultado{
+  .resultado{
     width: 60px;
     height: 60px;
     background-color: black;

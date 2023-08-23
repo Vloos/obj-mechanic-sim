@@ -3,22 +3,19 @@
 	import Icons from "./icons.svelte";
   /**@type {import("../objeto.js").default | undefined}*/
   export let obj = undefined
-  export let handleOver = () => null
-  export let sale = () => null
+
 
   function sobreObj(){
-    handleOver()
     $overado = obj
   }
 
   function noSobreObj(){
-    sale()
     $overado = undefined
   }
 </script>
 
 <div 
-  style={`border-color: ${obj?.calidad.color}; box-shadow:inset 0 0 0.5rem ${obj?.calidad.color};`}
+  style={`border-color: ${obj?.calidad.color}; box-shadow:inset 0 0 0.5rem 2px ${obj?.calidad.color};`}
   on:mouseenter={sobreObj}
   on:focus={sobreObj}
   on:mouseleave={noSobreObj}

@@ -175,11 +175,13 @@ export class Calidades{
 }
 
 export class Estados{
-  static Bloqueado = new Estados('Bloqueado', 'No se puede borrar, ni modificar')
+  static Bloqueado = new Estados('Bloqueado', 'No se puede borrar, ni modificar','l')
+  static Basura = new Estados('Basura', 'Se recicla automáticamente','t')
 
-  constructor(nombre, descripcion){
+  constructor(nombre, descripcion, tecla){
     this.nombre = nombre
     this.descripcion = descripcion
+    this.tecla = tecla
   }
     
 }

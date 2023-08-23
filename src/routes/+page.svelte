@@ -5,6 +5,7 @@
   import {crearObjeto} from '$lib/objeto'
 	import Objicon from '$lib/components/objicon.svelte';
 	import Forja from '$lib/components/forja.svelte';
+	import Recicla from '$lib/components/recicla.svelte';
 
   /**@type {import("$lib/objeto.js").default | undefined}*/
   let obj = undefined
@@ -36,13 +37,15 @@
 
 
 <p>
-  {$overado?.nombre || ''}
-  {$mousePos.x} : {$mousePos.y}
-  {$agarrado?.nombre || ''}
+  Viendo: {$overado?.nombre || ''} |
+  Moviendo: {$agarrado?.nombre || ''} |
+  {$mousePos.x} : {$mousePos.y} 
 </p>
 
 {#if Boolean($overado)}
-  <div class='objInfo' style={`top:${$mousePos.y}px; left:${$mousePos.x}px`}>
+  <div 
+    class='objInfo' style={`top:${$mousePos.y}px; left:${$mousePos.x}px`}
+  >
     <Objeto obj={$overado}/>
   </div>
 {/if}
@@ -54,11 +57,15 @@
 
 <Inventario bind:objs={objs} {maxInvTam}/>
 
+<!--
 <hr>
 <h2>Forja</h2>
 <Forja/>
+-->
 
-
+<hr>
+<h2>Reciclar</h2>
+<Recicla/>
 
 <style>
   .objicon{
@@ -76,6 +83,10 @@
     margin: 0;
     padding: 0;
     pointer-events:none;
-    transform: translateX(-40%) translateY(-10%);
+    transform: translateX(-40%) translateY(10%);
+  }
+
+  hr{
+    margin: 1rem 0;
   }
 </style>

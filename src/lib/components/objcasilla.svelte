@@ -21,21 +21,30 @@
 
     const menter = () => {
       sobre = true
-      $overado = obj
+
     }
 
     const mleave = () => {
       sobre = false
-      $overado = undefined
+
     }
 
     const mup = () => {
-      Boolean($agarrado) ? soltar() : agarrar()
+      if ($agarrado){
+        soltar()
+      } else {
+        agarrar()
+        $overado = undefined
+      }
+      
     }
 
     const mdrag = (e) => {
       e.preventDefault()
-      if (!$agarrado) agarrar()
+      if (!$agarrado){
+        agarrar()
+        $overado = undefined
+      } 
     }
 
     ele.addEventListener('dragstart', mdrag)
@@ -70,6 +79,7 @@
   div{
     width: 60px;
     height: 60px;
+    background-color: black;
   }
 
   .sobre{

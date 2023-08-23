@@ -28,6 +28,16 @@ export default class Objeto {
 
     return txt
   }
+
+  /**
+   * 
+   * @param {{prop:import('$lib/tipos').Prop, valor: number}} cual 
+   */
+  static calcPropPerfect(cual){
+    return Math.floor(
+        ((cual.valor - cual.prop.min) / (cual.prop.max - cual.prop.min)) * 100
+      )
+  }
 }
 
 export function crearObjeto(){

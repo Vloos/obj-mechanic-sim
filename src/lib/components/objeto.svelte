@@ -1,22 +1,25 @@
 <script>
+	import { fade } from 'svelte/transition';
 	import Icons from '$lib/components/icons.svelte';
   /**@type {import("../objeto.js").default | undefined}*/
   export let obj = undefined
 </script>
 
-{#if obj}
-  <div style={`border-color: ${obj.calidad.color}; box-shadow:inset 0 0 1rem ${obj.calidad.color};`}>
-    <header>
-      <h3>{obj.nombre}</h3>
-      <span>{obj.calidad.nombre}</span>
-      <span class="icon"><Icons name={obj.icon} width='50' height='50'/></span>
-    </header>
-    <hr>
-    {#each [...obj.props] as [k,v]}
-      <p><span>{k.nombre}</span><span>+{v}%</span></p>
-    {/each}
-  </div>
-{/if}
+
+<div 
+  style={`border-color: ${obj.calidad.color}; box-shadow:inset 0 0 1rem ${obj.calidad.color};`}
+  transition:fade={{duration:100}}
+>
+  <header>
+    <h3>{obj.nombre}</h3>
+    <span>{obj.calidad.nombre}</span>
+    <span class="icon"><Icons name={obj.icon} width='50' height='50'/></span>
+  </header>
+  <hr>
+  {#each [...obj.props] as [k,v]}
+    <p><span>{k.nombre}</span><span>+{v}%</span></p>
+  {/each}
+</div>
 
 
 <style>
