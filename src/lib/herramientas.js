@@ -10,6 +10,14 @@ export const randInt = (min, max) => {
 };
 
 
+/**
+ * Devuelve uno de los elementos del segundo array, escogido al azar, con el peso asignado en el primer array.
+ * Por ejemplo, elemento a, con peso 3, y elemento b, con peso 1.
+ * 1 de cada cuatro veces podría salir el elemento b.
+ * @param {Array.<Number>} probs 
+ * @param {Array.<any>} ops 
+ * @returns {any}
+ */
 export function aleatorioConProbs(probs, ops) {
   const max = probs.reduce((acc, red) => acc + red);
   const num = randInt(0, max);

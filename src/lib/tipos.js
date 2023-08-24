@@ -1,42 +1,48 @@
 export class Prop {
   // ofensivo
-  static Crtpro = new Prop('Probabilidad de crítico', 5, 10)
-  static CrtDmg = new Prop('Daño de crítico', 10, 20)
-  static Attspd = new Prop('Velocidad de ataque', 3, 6)
-  static FisDmg = new Prop('Daño físico', 10, 20)
-  static EleDmg = new Prop('Daño elemental', 10, 20)
-  static MagDmg = new Prop('Daño mágico', 10, 20)
+  static Crtpro = new Prop('Crit prob', 5, 10)
+  static CrtDmg = new Prop('Crit dmg', 10, 20)
+  static Attspd = new Prop('Aspd', 3, 6)
+  static FisDmg = new Prop('Physical dmg', 10, 20)
+  static EleDmg = new Prop('Elemental dmg', 10, 20)
+  static MagDmg = new Prop('Magical dmg', 10, 20)
+  static EmoDmg = new Prop('Emotional dmg', 10, 20)
   static UsOfSk = new Prop('Useless offensive skill', 2, 8)
   static NiOfSk = new Prop('Nice offensive skill', 2, 8)
   static GoOfSk = new Prop('Good offensive skill', 2, 8)
   static NiOfSk = new Prop('Barely used niche skill (offensive)', 2, 8)
+  static NotuOf = new Prop('Not your class skill (offensive)', 2, 8)
 
   // utilidad
-  static VelMod = new Prop('Velocidad de movimiento', 6, 12)
-  static RecRec = new Prop('Recuperación de recurso', 6, 12)
-  static RedRec = new Prop('Reducción de consumo de recurso', 2, 8)
-  static VelReu = new Prop('Velocidad de reutilización', 5, 10)
-  static ModHab = new Prop('Nivel de habilidades', 1, 4)
-  static masTod = new Prop('Todas las características', 5, 10)
-  static MasFue = new Prop('Fuerza', 10, 20)
-  static MasDes = new Prop('Destreza', 10, 20)
-  static MasCon = new Prop('Constitución', 10, 20)
-  static MasInt = new Prop('Inteligencia', 10, 20)
+  static VelMod = new Prop('Mov speed', 6, 12)
+  static RecRec = new Prop('Resource recovery speed', 6, 12)
+  static RedRec = new Prop('Resource use reduction', 2, 8)
+  static VelReu = new Prop('Cooldown reduction', 5, 10)
+  static ModHab = new Prop('Skill levels', 1, 4)
+  static masTod = new Prop('All stats', 5, 10)
+  static MasFue = new Prop('Str', 10, 20)
+  static MasDes = new Prop('Dex', 10, 20)
+  static MasCon = new Prop('Con', 10, 20)
+  static MasInt = new Prop('Int', 10, 20)
   static UsUtSk = new Prop('Useless utility skill', 2, 8)
   static NiUtSk = new Prop('Nice utility skill', 2, 8)
   static GoUtSk = new Prop('Good utility skill', 2, 8)
   static NiUtSk = new Prop('Barely used niche skill (utility)', 2, 8)
+  static Bugged = new Prop('Bugged stat', 8, 16)
+  static NotuUt = new Prop('Not your class skill (utility)', 2, 8)
   // defensa
-  static DmgRed = new Prop('Reducción de todo daño', 5, 10)
-  static FisRed = new Prop('Reducción de daño físico', 10, 15)
-  static EleRed = new Prop('Reducción de daño elemental', 10, 15)
-  static MagRed = new Prop('Reducción de daño mágico', 10, 15)
-  static MaxHps = new Prop('Salud', 10, 20)
-  static EvaPro = new Prop('Probabilidad de esquivar', 6, 12)
+  static DmgRed = new Prop('All dmg reduction', 5, 10)
+  static FisRed = new Prop('Phys dmg reduction', 10, 15)
+  static EleRed = new Prop('Ele dmg reduction', 10, 15)
+  static MagRed = new Prop('Magic dmg reduction', 10, 15)
+  static EmoRed = new Prop('Emo dmg reduction', 10, 15)
+  static MaxHps = new Prop('HP', 10, 20)
+  static EvaPro = new Prop('Evade', 6, 12)
   static UsDeSk = new Prop('Useless deffensive skill', 2, 8)
   static NiDeSk = new Prop('Nice deffensive skill', 2, 8)
   static GoDeSk = new Prop('Good deffensive skill', 2, 8)
   static NiDeSk = new Prop('Barely used niche skill (deffensive)', 2, 8)
+  static NotuDe = new Prop('Not your class skill (deffensive)', 2, 8)
 
   /**
    * @param {strign} nombre 
@@ -59,15 +65,19 @@ export class PropTipos{
     Prop.FisDmg,
     Prop.EleDmg,
     Prop.MagDmg,
+    Prop.EmoDmg,
     Prop.UsOfSk,
     Prop.NiOfSk,
     Prop.GoOfSk,
     Prop.NiOfSk,
+    Prop.Bugged,
+    Prop.NotuOf,
   ])
   static Defensivo = new PropTipos('Defensivo',[
     Prop.DmgRed,
     Prop.FisRed,
     Prop.EleRed,
+    Prop.EmoRed,
     Prop.MagRed,
     Prop.MaxHps,
     Prop.EvaPro,
@@ -75,6 +85,8 @@ export class PropTipos{
     Prop.NiDeSk,
     Prop.GoDeSk,
     Prop.NiDeSk,
+    Prop.Bugged,
+    Prop.NotuDe,
   ])
   static Utilidad = new PropTipos('Utilidad',[
     Prop.VelMod,
@@ -91,6 +103,8 @@ export class PropTipos{
     Prop.NiUtSk,
     Prop.GoUtSk,
     Prop.NiUtSk,
+    Prop.Bugged,
+    Prop.NotuUt,
   ])
 
   constructor(nombre, props){
@@ -128,21 +142,26 @@ const propsAnillo = [
   {tipo: PropTipos.Defensivo, peso:1},
   {tipo: PropTipos.Ofensivo, peso:3},
 ]
-
+const propsFragmento = [
+  {tipo: PropTipos.Utilidad, peso:1},
+  {tipo: PropTipos.Defensivo, peso:1},
+  {tipo: PropTipos.Ofensivo, peso:1},
+]
 
 export class ObjetosTipos {
-  static Espada = new ObjetosTipos('Espada', propsArma, ['broadsword', 'gladius', 'katana', 'stiletto', 'two-handed-sword', ])
-  static Daga = new ObjetosTipos('Daga', propsArma, ['curvy-knife', 'sacrificial-dagger', ])
-  static Ballesta = new ObjetosTipos('Ballesta', propsArma, ['crossbow',])
-  static Hacha = new ObjetosTipos('Hacha', propsArma, ['battle-axe', 'tomahawk'])
-  static Arco = new ObjetosTipos('Arco', propsArma, ['double-shot', 'heavy-arrow', 'high-shot', 'pocket-bow', ])
-  static Maza = new ObjetosTipos('Maza', propsArma, ['flanged-mace', 'orb-wand', 'spiked-bat', 'warhammer'])
-  static Casco = new ObjetosTipos('Casco', propsCasco, ['barbute', 'black-knight-helm', 'closed-barbute', 'crested-helmet', 'heavy-helm', 'spartan-helmet', 'visored-helm'])
-  static Pechera = new ObjetosTipos('Pechera', propsPechera, ['abdominal-armor', 'heart-armor', 'leather-armor', 'leather-vest', 'mail-shirt', 'plastron', 'saiyan-suit', 'scale-mail', 'shoulder-armor', ])
-  static Guantes = new ObjetosTipos('Guantes', propsGuantes, ['gauntlet', 'gloves', 'mailed-fist', ])
-  static Botas = new ObjetosTipos('Botas', propsBotas, ['leg-armor', 'metal-boot', 'steeltoe-boots'])
-  static Amuleto = new ObjetosTipos('Amuleto', propsAmuleto, ['emerald-necklace', 'feather-necklace', 'gem-chain', 'gem-necklace', 'gem-pendant', 'heart-necklace', 'necklace', 'pearl-necklace', 'pendant-key', 'prayer-beads', 'primitive-necklace', 'tribal-pendant', ])
-  static Anillo = new ObjetosTipos('Anillo', propsAnillo,['big-diamond-ring', 'diamond-ring', 'globe-ring', 'power-ring', 'ring', 'skull-ring', 'skull-signet', 'torc', ])
+  static Espada = new ObjetosTipos('Sword', propsArma, ['broadsword', 'gladius', 'katana', 'stiletto', 'two-handed-sword', ])
+  static Daga = new ObjetosTipos('Dagger', propsArma, ['curvy-knife', 'sacrificial-dagger', ])
+  static Ballesta = new ObjetosTipos('Crossbow', propsArma, ['crossbow',])
+  static Hacha = new ObjetosTipos('Haxe', propsArma, ['battle-axe', 'tomahawk'])
+  static Arco = new ObjetosTipos('Bow', propsArma, ['double-shot', 'heavy-arrow', 'high-shot', 'pocket-bow', ])
+  static Maza = new ObjetosTipos('Mace', propsArma, ['flanged-mace', 'orb-wand', 'spiked-bat', 'warhammer'])
+  static Casco = new ObjetosTipos('Helm', propsCasco, ['barbute', 'black-knight-helm', 'closed-barbute', 'crested-helmet', 'heavy-helm', 'spartan-helmet', 'visored-helm'])
+  static Pechera = new ObjetosTipos('Chest', propsPechera, ['abdominal-armor', 'heart-armor', 'leather-armor', 'leather-vest', 'mail-shirt', 'plastron', 'saiyan-suit', 'scale-mail', 'shoulder-armor', ])
+  static Guantes = new ObjetosTipos('Gloves', propsGuantes, ['gauntlet', 'gloves', 'mailed-fist', ])
+  static Botas = new ObjetosTipos('Boots', propsBotas, ['leg-armor', 'metal-boot', 'steeltoe-boots'])
+  static Amuleto = new ObjetosTipos('Amulet', propsAmuleto, ['emerald-necklace', 'feather-necklace', 'gem-chain', 'gem-necklace', 'gem-pendant', 'heart-necklace', 'necklace', 'pearl-necklace', 'pendant-key', 'prayer-beads', 'primitive-necklace', 'tribal-pendant', ])
+  static Anillo = new ObjetosTipos('Ring', propsAnillo,['big-diamond-ring', 'diamond-ring', 'globe-ring', 'power-ring', 'ring', 'skull-ring', 'skull-signet', 'torc', ])
+  static Fragmento = new ObjetosTipos('Fragment', propsFragmento, ['nugget'])
 
   /**
    * 
@@ -161,11 +180,13 @@ export class ObjetosTipos {
 
 export class Calidades{
   static normal = new Calidades('Normal', 'white', 1)
-  static raro = new Calidades('Raro', 'blue', 2)
-  static magico = new Calidades('Mágico', 'yellow', 3)
-  static sacro = new Calidades('Sacro', 'gold', 4)
-  static ancestral = new Calidades('Ancestral', 'darkorange', 5)
-  static unico = new Calidades('Único', 'green', 6)
+  static raro = new Calidades('Rare', 'lightgrey', 2)
+  static magico = new Calidades('Magic', 'darkgrey', 3)
+  static sacro = new Calidades('Sacred', 'black', 4)
+  static ancestral = new Calidades('Ancestral', 'yellow', 5)
+  static legendario = new Calidades('Legendary', 'orange', 6)
+  static primigeneo = new Calidades('Ancient', 'red', 7)
+  static unico = new Calidades('Unic', 'gold', 8)
 
   constructor(nombre, color, nProps){
     this.nombre = nombre

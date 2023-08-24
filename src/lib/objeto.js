@@ -1,4 +1,4 @@
-import {Prop, PropTipos, ObjetosTipos, Calidades } from './tipos'
+import { ObjetosTipos, Calidades } from './tipos'
 import {randInt, aleatorioConProbs, id} from './Herramientas'
 
 export default class Objeto {
@@ -17,6 +17,8 @@ export default class Objeto {
     this.icon
     /**@type {string} */
     this.estado
+    /**@type {number} */
+    this.cantidad
   }
 
   resumen() {
@@ -30,7 +32,6 @@ export default class Objeto {
   }
 
   /**
-   * 
    * @param {{prop:import('$lib/tipos').Prop, valor: number}} cual 
    */
   static calcPropPerfect(cual){
@@ -40,10 +41,37 @@ export default class Objeto {
   }
 }
 
+const objGenerablesList = [
+  ObjetosTipos.Amuleto,
+  ObjetosTipos.Anillo, 
+  ObjetosTipos.Arco,
+  ObjetosTipos.Ballesta, 
+  ObjetosTipos.Botas, 
+  ObjetosTipos.Casco,
+  ObjetosTipos.Daga, 
+  ObjetosTipos.Espada,
+  ObjetosTipos.Guantes,
+  ObjetosTipos.Hacha,
+  ObjetosTipos.Maza
+]
+const objGenerablesPeso = [1,1,1,1,1,1,1,1,1,1,1]
+
+const calidadesGenerablesList = [
+  Calidades.normal,
+  Calidades.raro,
+  Calidades.magico,
+  Calidades.sacro,
+  Calidades.ancestral,
+  Calidades.legendario,
+  Calidades.primigeneo,
+  Calidades.unico,
+]
+const calidadGenerablesPeso = [8,7,6,5,4,3,2,1,]
+
 export function crearObjeto(){
   // tipo de objeto (arma, amuleto, casco...)
-  const listaTipos = Object.keys(ObjetosTipos)
-  const objTipo = ObjetosTipos[listaTipos[randInt(0,listaTipos.length-1)]]
+  const objTipo = aleatorioConProbs(objGenerablesPeso, objGenerablesList)
+  //ObjetosTipos[listaTipos[randInt(0,listaTipos.length-1)]]
 
   //  nombre, icono
   const objNombre = objTipo.nombre
@@ -51,8 +79,7 @@ export function crearObjeto(){
   console.log(objTipo);
 
   // calidad (normal, raro, mágico...)
-  const listaCalidades = Object.keys(Calidades)
-  const objCalidad = Calidades[listaCalidades[randInt(0, listaCalidades.length-1)]]
+  const objCalidad = aleatorioConProbs(calidadGenerablesPeso, calidadesGenerablesList)
 
   // propiedades
   //  Saca cada tipo de propiedad con su peso
