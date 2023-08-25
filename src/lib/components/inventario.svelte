@@ -5,6 +5,10 @@
   export let maxInvTam = 1
   /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
   export let objs = []
+  /**@type {Array.<import('$lib/tipos').ObjetosTipos>}*/
+  export let drop = []
+  /**@type {Array.<import('$lib/tipos').ObjetosTipos>}*/
+  export let nodrop = []
 
 </script>
 
@@ -13,7 +17,7 @@
 <ul>
   {#each Array(maxInvTam) as k,i}
     <li>
-      <Objcasilla bind:obj={objs[i]}/>
+      <Objcasilla bind:obj={objs[i]} {drop} {nodrop}/>
     </li>
   {/each}
 </ul>

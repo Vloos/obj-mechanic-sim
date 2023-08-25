@@ -196,13 +196,18 @@ export class Calidades{
 }
 
 export class Estados{
-  static Bloqueado = new Estados('Bloqueado', 'No se puede borrar, ni modificar','l')
-  static Basura = new Estados('Basura', 'Se recicla automáticamente','t')
+  static botonesEstados = new Map()
+  
+  static Bloqueado = new Estados('Bloqueado', 'No se puede borrar, ni modificar','l','lock')
+  static Basura = new Estados('Basura', 'Se recicla automáticamente','t','trash')
 
-  constructor(nombre, descripcion, tecla){
+
+  constructor(nombre, descripcion, tecla, icon){
     this.nombre = nombre
     this.descripcion = descripcion
     this.tecla = tecla
+    this.icon = icon
+    Estados.botonesEstados.set(this.tecla,this)
   }
-    
 }
+

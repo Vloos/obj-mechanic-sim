@@ -6,6 +6,10 @@
   export let obj = undefined
   /**@type {boolean}*/
   let sobre = false
+  /**@type {Array.<import("$lib/tipos.js").ObjetosTipos>}*/
+  export let nodrop = []
+  /**@type {Array.<import("$lib/tipos.js").ObjetosTipos>}*/
+  export let drop = []
 
   function moverobj(ele) {
     const agarrar = () => {
@@ -30,8 +34,23 @@
     }
 
     const mup = () => {
-      if ($agarrado){
-        soltar()
+      if ($agarrado) {
+        let soltable = true
+        
+        // nodrop tiene preferencia sobre drop.
+        // si hay algo en drop, lo que no hay, no se dropea
+        if(drop.length > 0 && !drop.includes($agarrado.tipo)) {
+          soltable = false
+        }
+
+        // si hay algo en no drop, no se dropea aunque esté en drop
+        if(nodrop.includes($agarrado.tipo)) {
+          soltable = false
+        }
+
+        if (soltable) {
+          soltar()
+        }
       } else {
         agarrar()
         $overado = undefined

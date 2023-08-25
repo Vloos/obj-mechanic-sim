@@ -1,6 +1,7 @@
 <script>
+	import Icons from '$lib/components/icons.svelte';
 	import { overado } from "$lib/stores";
-	import Icons from "./icons.svelte";
+
   /**@type {import("../objeto.js").default | undefined}*/
   export let obj = undefined
 
@@ -15,17 +16,31 @@
 </script>
 
 <div 
-  style={`border-color: ${obj?.calidad.color}; box-shadow:inset 0 0 0.5rem 2px ${obj?.calidad.color};`}
+  style={`border-color: ${obj?.calidad.color};`}
   on:mouseenter={sobreObj}
   on:focus={sobreObj}
   on:mouseleave={noSobreObj}
   on:blur={noSobreObj}
   role="presentation"
   >
-  <Icons name={obj?.icon || 'error'} height='50px' width='50px'/>
+  <span class="obj">
+    <Icons name={obj?.icon || 'error'} height='50px' width='50px'/>
+  </span>
+  {#if obj?.estado}
+    <span class="estado">
+      <Icons name={obj.estado.icon} height='100%' width='100%'/>
+    </span>
+  {/if}
+
 </div>
 
 <style>
+  span{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-content: center;
+  }
   div{
     display: grid;
     place-content: center;
@@ -33,5 +48,19 @@
     width: 60px;
     border: 2px solid;
     background-color: black;
+    grid-template-columns: auto 40px;
+    grid-template-rows: 40px auto;
+    gap: 0;
   }
+  .obj{
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+  .estado{
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: black;
+  }
+
+
 </style>

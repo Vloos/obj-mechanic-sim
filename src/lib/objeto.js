@@ -15,7 +15,7 @@ export default class Objeto {
     this.props
     /**@type {string} */
     this.icon
-    /**@type {string} */
+    /**@type {import('./tipos').Estados} */
     this.estado
     /**@type {number} */
     this.cantidad
@@ -25,7 +25,7 @@ export default class Objeto {
     let txt = `${this.nombre} ${this.calidad.nombre}`
 
     this.props.forEach((prop, k) =>{
-      txt += `\n${k.nombre}: +${prop}%`
+      txt += `\n${k.nombre}: +${prop || ''}%`
     })
 
     return txt
@@ -52,7 +52,7 @@ const objGenerablesList = [
   ObjetosTipos.Espada,
   ObjetosTipos.Guantes,
   ObjetosTipos.Hacha,
-  ObjetosTipos.Maza
+  ObjetosTipos.Maza,
 ]
 const objGenerablesPeso = [1,1,1,1,1,1,1,1,1,1,1]
 
@@ -71,12 +71,10 @@ const calidadGenerablesPeso = [8,7,6,5,4,3,2,1,]
 export function crearObjeto(){
   // tipo de objeto (arma, amuleto, casco...)
   const objTipo = aleatorioConProbs(objGenerablesPeso, objGenerablesList)
-  //ObjetosTipos[listaTipos[randInt(0,listaTipos.length-1)]]
 
   //  nombre, icono
   const objNombre = objTipo.nombre
   const objIcon = objTipo.icons[randInt(0, objTipo.icons.length-1)]
-  console.log(objTipo);
 
   // calidad (normal, raro, mágico...)
   const objCalidad = aleatorioConProbs(calidadGenerablesPeso, calidadesGenerablesList)
@@ -115,4 +113,19 @@ function generarObjProp(pesos, props){
   let queProp = propLista[randInt(0, propLista.length-1)]
   let queValor = randInt(queProp.min, queProp.max)
   return {prop: queProp, valor: queValor}
+}
+
+
+/**@param {import('$lib/tipos').Prop} */
+export function generarFragmento(prop){
+  const obj = new Objeto()
+  const props = new Map()
+  obj.tipo = ObjetosTipos.Fragmento
+  props.set(prop, undefined)
+  obj.props = props
+  obj.calidad = Calidades.normal
+  obj.cantidad = 1
+  obj.icon = obj.tipo.icons[0]
+  obj.nombre = obj.tipo.nombre
+  return obj
 }
