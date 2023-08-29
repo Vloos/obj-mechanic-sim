@@ -1,5 +1,5 @@
 <script>
-	import { agarrado, mousePos, overado } from '$lib/stores.js';
+	import { agarrado, mousePos, overado, keypressed, mouseWheel } from '$lib/stores.js';
 	import Inventario from '$lib/components/inventario.svelte';
   import Objeto from '$lib/components/objeto.svelte';
   import {crearObjeto, generarFragmento} from '$lib/objeto'
@@ -7,7 +7,7 @@
 	import Forja from '$lib/components/forja.svelte';
 	import Recicla from '$lib/components/recicla.svelte';
 	import { Estados, ObjetosTipos, Prop } from '$lib/tipos';
-	import { onMount } from 'svelte';
+	import InventarioFrag from '$lib/components/inventario-frag.svelte';
 
   /**@type {import("$lib/objeto.js").default | undefined}*/
   let obj = undefined
@@ -24,24 +24,52 @@
     mats.push(generarFragmento(Prop[p]))
   })
 
-  onMount(() => {
-    document.addEventListener('keydown', (e) => {
-      let estado = Estados.botonesEstados.get(e.key)
-      if ($overado && estado){
-        if (!$overado.estado) {
-          $overado.estado = estado
-        } else if ($overado.estado.tecla === estado.tecla) {
-          $overado.estado = undefined
-        }
-      }
 
-      console.log($overado);
-    })
-  })
+  $: keyp($keypressed)
+  $: console.log($mouseWheel);
+
+  /**
+    @param {{key: string | undefined,
+      charcode: number | undefined,
+      keycode: number | undefined,
+      ctrl: boolean,
+      shift: boolean,
+      alt: boolean}} e
+    */
+  function keyp (e) {   
+    let tecla = e?.key
+    console.log(tecla);
+    if ($overado){
+      if (!$overado.estado) {
+        $overado.estado = Estados.botonesEstados.get(tecla)
+      } else if ($overado.estado.tecla === tecla) {
+        $overado.estado = undefined
+      }
+    }
+  }
+  
 
   function generar(){
     let obj = crearObjeto()
     objs[objs.indexOf(undefined)] = obj
+    objs = objs
+  }
+
+
+  function borrarBasura(){
+    objs.forEach((o, i) => {
+      if (o?.estado?.tecla === Estados.Basura.tecla) {
+        objs[i] = undefined
+      }
+    });
+    objs = objs
+  }
+
+
+  function borrarTodo(){
+    objs.forEach((o, i) => {
+      if (o?.estado?.tecla !== Estados.Bloqueado.tecla) objs[i] = undefined
+    })
     objs = objs
   }
 </script>
@@ -67,15 +95,22 @@
   <h1>Inventario</h1>
   <div class="objs">
     <h2>Objetos</h2>
-    <button
-      on:click={generar}
-      disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
-    >Generar</button>
+    <div class="botones">
+      <button class="generar"
+        on:click={generar}
+        disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
+      >Generar</button>
+      <button class="borrar" on:click={borrarBasura}>Borrar basura</button>
+      <button class="borrar" on:click={borrarTodo}>Borrar todo</button>
+    </div>
     <Inventario bind:objs={objs} {maxInvTam} nodrop={[ObjetosTipos.Fragmento]}/>
   </div>
+
+
   <div class="mats">
     <h2>Materiales</h2>
-    <Inventario bind:objs={mats} maxInvTam={Object.keys(Prop).length} drop={[ObjetosTipos.Fragmento]}/>
+    <!-- <Inventario bind:objs={mats} maxInvTam={Object.keys(Prop).length} drop={[ObjetosTipos.Fragmento]}/> -->
+    <InventarioFrag bind:objs={mats}/>
   </div>
 </div>
 
@@ -127,5 +162,20 @@
 
   .inventario h1{
     flex-basis: 100%;
+  }
+
+  .borrar{
+    flex-basis: max-content;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+
+  .botones{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mats{
+    flex-grow: 1;
   }
 </style>
