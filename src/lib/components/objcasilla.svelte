@@ -31,7 +31,7 @@
       sobre = false
     }
 
-    const mup = () => {
+    const mup = (e) => {
       if ($agarrado) {
         let soltable = true
         
@@ -50,8 +50,18 @@
           soltar()
         }
       } else {
-        agarrar()
-        $overado = undefined
+        switch(e.button){
+          case 0:
+            agarrar()
+            $overado = undefined
+            break
+          case 1:
+            console.log('click central');
+            break
+          case 2:
+          console.log('click derecho');
+            break
+        }
       }
       
     }
@@ -85,6 +95,7 @@
   draggable={Boolean(obj)}
   class:sobre={sobre}
   use:moverobj
+  on:contextmenu|preventDefault
 >
   {#if obj}
     <Objicon {obj}/>

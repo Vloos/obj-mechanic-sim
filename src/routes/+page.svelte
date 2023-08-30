@@ -1,5 +1,5 @@
 <script>
-	import { agarrado, mousePos, overado, keypressed, mouseWheel } from '$lib/stores.js';
+	import { agarrado, mousePos, overado, keypressed, mouseWheel, materiales, inventario } from '$lib/stores.js';
 	import Inventario from '$lib/components/inventario.svelte';
   import Objeto from '$lib/components/objeto.svelte';
   import {crearObjeto, generarFragmento} from '$lib/objeto'
@@ -13,11 +13,11 @@
   let obj = undefined
   /**@type {number}*/
   let maxInvTam = 36
-  /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
-  let objs = []
+
   for (let i = 0; i < maxInvTam; i++) {
-    objs[i] = undefined
+    $inventario[i] = undefined
   }
+
   /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
   let mats = []
   Object.keys(Prop).forEach(p => {
@@ -51,26 +51,27 @@
 
   function generar(){
     let obj = crearObjeto()
-    objs[objs.indexOf(undefined)] = obj
-    objs = objs
+    $inventario[$inventario.indexOf(undefined)] = obj
   }
 
 
   function borrarBasura(){
+    let objs = [...$inventario]
     objs.forEach((o, i) => {
       if (o?.estado?.tecla === Estados.Basura.tecla) {
         objs[i] = undefined
       }
     });
-    objs = objs
+    $inventario = [...objs]
   }
 
 
   function borrarTodo(){
+    let objs = [...$inventario]
     objs.forEach((o, i) => {
       if (o?.estado?.tecla !== Estados.Bloqueado.tecla) objs[i] = undefined
     })
-    objs = objs
+    $inventario = [...objs]
   }
 </script>
 
@@ -98,12 +99,12 @@
     <div class="botones">
       <button class="generar"
         on:click={generar}
-        disabled={!objs.some(o => o == undefined) || Boolean($agarrado)}
+        disabled={!$inventario.some(o => o == undefined) || Boolean($agarrado)}
       >Generar</button>
       <button class="borrar" on:click={borrarBasura}>Borrar basura</button>
       <button class="borrar" on:click={borrarTodo}>Borrar todo</button>
     </div>
-    <Inventario bind:objs={objs} {maxInvTam} nodrop={[ObjetosTipos.Fragmento]}/>
+    <Inventario {maxInvTam} nodrop={[ObjetosTipos.Fragmento]}/>
   </div>
 
 

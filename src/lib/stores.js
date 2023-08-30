@@ -1,13 +1,22 @@
 import { readable, writable } from 'svelte/store';
+import { browser } from '$app/environment';
 
-  /**@type {import("../objeto.js").default | undefined}*/
+
+/**@type {import("../objeto.js").default | undefined}*/
 export const agarrado = writable(undefined)
 /**@type {import("../objeto.js").default | undefined}*/
 export const overado = writable(undefined)
 
+/**@type {SvelteStore.<Array.<import("./objeto.js").default | undefined>>}*/
+export const inventario = writable([])
+/**@type {SvelteStore<Map.<import('$lib/tipos.js').Prop, import("$lib/objeto.js").default | undefined>>} */
+export const materiales = writable(new Map())
+
+
+
 
 export const mousePos = readable({x:0, y:0}, (set) => {
-	document.body.addEventListener("mousemove", move);
+	if(browser) document.body.addEventListener("mousemove", move);
 	
 	function move(event) {
 		set({
@@ -17,13 +26,13 @@ export const mousePos = readable({x:0, y:0}, (set) => {
 	}
 	
 	return () => {
-		document.body.removeEventListener("mousemove", move);
+		if(browser) document.body.removeEventListener("mousemove", move);
 	}
 })
 
 
 export const keypressed = readable({key: undefined, charcode: undefined, keycode: undefined, ctrl: false, alt: false, shift: false}, set => {
-	document.body.addEventListener("keydown", key);
+	if(browser) document.body.addEventListener("keydown", key);
 
 	function key(e){
 		set({
@@ -37,14 +46,17 @@ export const keypressed = readable({key: undefined, charcode: undefined, keycode
 	}
 
 	return () => {
-		document.body.removeEventListener('keydown', key)
+		if(browser) document.body.removeEventListener('keydown', key)
 	}
 })
 
-export const mouseWheel = readable({up:undefined, down: undefined, click: undefined}, set => {
-	document.body.addEventListener('wheel', wheel)
+export const mouseWheel = readable({x: 0, y: 0}, set => {
+	if(browser) document.body.addEventListener('wheel', wheel)
 
 	function wheel(e){
-		set(e)
+		set({
+			x: e.deltaX,
+			y: e.deltaY,
+		})
 	}
 })

@@ -124,8 +124,9 @@ export function generarFragmento(prop){
   props.set(prop, undefined)
   obj.props = props
   obj.calidad = Calidades.normal
-  obj.cantidad = 1
+  obj.cantidad = 0
   obj.icon = obj.tipo.icons[0]
   obj.nombre = obj.tipo.nombre
+  obj.id = prop
   return obj
 }

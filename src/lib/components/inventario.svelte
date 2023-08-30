@@ -1,10 +1,9 @@
 <script>
+	import { inventario } from '$lib/stores';
 	import Objcasilla from './objcasilla.svelte';
 
   /**@type {number}*/
   export let maxInvTam = 1
-  /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
-  export let objs = []
   /**@type {Array.<import('$lib/tipos').ObjetosTipos>}*/
   export let drop = []
   /**@type {Array.<import('$lib/tipos').ObjetosTipos>}*/
@@ -17,7 +16,7 @@
 <ul>
   {#each Array(maxInvTam) as k,i}
     <li>
-      <Objcasilla bind:obj={objs[i]} {drop} {nodrop}/>
+      <Objcasilla bind:obj={$inventario[i]} {drop} {nodrop}/>
     </li>
   {/each}
 </ul>

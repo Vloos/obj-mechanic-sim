@@ -8,13 +8,38 @@
   function prop(obj){ 
     return [...obj.props.keys()][0]
   }
+
+
+  function moverFrag(ele){
+    function mdrag(){}
+
+    function menter(){}
+
+    function mleave(){}
+
+    function mup(){}
+
+    ele.addEventListener('dragstart', mdrag)
+    ele.addEventListener('mouseenter', menter)
+    ele.addEventListener('mouseleave', mleave)
+    ele.addEventListener('mouseup', mup)
+
+    return {
+      destroy(){
+        ele.removeEventListener('dragstart', mdrag)
+        ele.removeEventListener('mouseenter', menter)
+        ele.removeEventListener('mouseleave', mleave)
+        ele.removeEventListener('mouseup', mup)
+      }
+    }
+  }
 </script>
 
 
 <ul>
   {#each objs as obj}
     <li>
-      <span><Icons name={obj.icon}/></span><span>{prop(obj).nombre}</span>
+      <span><Icons name={obj.icon}/></span><span>{prop(obj).nombre}</span><span>{obj.cantidad}</span>
     </li>
   {/each}
 </ul>
@@ -31,7 +56,7 @@
 
   li{
     display: grid;
-    grid-template-columns: 40px auto;
+    grid-template-columns: auto 1fr 3rem;
     gap: 0.25 rem;
     padding: 0.25rem;
     background-color: #111;
