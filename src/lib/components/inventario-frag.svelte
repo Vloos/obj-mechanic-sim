@@ -1,13 +1,6 @@
 <script>
+	import { materiales } from '$lib/stores';
 	import Icons from './icons.svelte';
-
-  /**@type {Array.<import('$lib/objeto').default>}*/
-  export let objs = []
-
-  /**@param {import('$lib/objeto').default} obj*/
-  function prop(obj){ 
-    return [...obj.props.keys()][0]
-  }
 
 
   function moverFrag(ele){
@@ -37,9 +30,9 @@
 
 
 <ul>
-  {#each objs as obj}
+  {#each $materiales as [prop, obj]}
     <li>
-      <span><Icons name={obj.icon}/></span><span>{prop(obj).nombre}</span><span>{obj.cantidad}</span>
+      <span><Icons name={obj.icon}/></span><span>{prop.nombre}</span><span>{obj.cantidad}</span>
     </li>
   {/each}
 </ul>

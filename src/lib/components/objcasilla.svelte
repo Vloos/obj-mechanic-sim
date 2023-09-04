@@ -10,6 +10,10 @@
   export let nodrop = []
   /**@type {Array.<import("$lib/tipos.js").ObjetosTipos>}*/
   export let drop = []
+  /**@type {Array.<import("$lib/tipos.js").ObjetosTipos>}*/
+  export let pick = []
+  /**@type {Array.<import("$lib/tipos.js").ObjetosTipos>}*/
+  export let nopick = []
 
   function moverobj(ele) {
     const agarrar = () => {
@@ -50,9 +54,20 @@
           soltar()
         }
       } else {
+        let agarrable = true
         switch(e.button){
           case 0:
-            agarrar()
+            // igual que drop / nodrop
+            if(pick.length > 0 && !pick.includes(obj.tipo)) {
+              agarrable = false
+            }
+            
+            // igual que drop / nodrop
+            if(nopick.includes(obj.tipo)) {
+              solable = false
+            }
+
+            if (agarrable) agarrar()
             $overado = undefined
             break
           case 1:

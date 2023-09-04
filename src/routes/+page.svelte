@@ -19,14 +19,11 @@
   }
 
   /**@type {Array.<import("$lib/objeto.js").default | undefined>}*/
-  let mats = []
+  
   Object.keys(Prop).forEach(p => {
-    mats.push(generarFragmento(Prop[p]))
+    $materiales.set(Prop[p], generarFragmento(Prop[p]))
   })
 
-
-  $: keyp($keypressed)
-  $: console.log($mouseWheel);
 
   /**
     @param {{key: string | undefined,
@@ -111,7 +108,7 @@
   <div class="mats">
     <h2>Materiales</h2>
     <!-- <Inventario bind:objs={mats} maxInvTam={Object.keys(Prop).length} drop={[ObjetosTipos.Fragmento]}/> -->
-    <InventarioFrag bind:objs={mats}/>
+    <InventarioFrag/>
   </div>
 </div>
 
